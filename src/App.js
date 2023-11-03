@@ -1,64 +1,59 @@
 // import logo from './logo.svg';
 import {
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Divider,
-  Grid,
-  Paper,
-  Tab,
-  Tabs,
-  Typography,
+  Grid
 } from "@mui/material";
 import "./App.css";
-import BasicTabs from "./BasicTabs";
+import BasicTabs from "./component/BasicTabs";
+import ComplexGrid from "./component/ComplexGrid";
+import About from "./component/About";
+import ContactMe from "./component/ContactMe";
+import Protfolio from "./component/Protfolio";
+import Skills from "./component/Skills";
+import Works from "./component/Works";
+import { useState } from "react";
+
 function App() {
+  const [success, setSuccess] = useState(false);
+
   return (
     <div className="App">
-      <Paper sx={{ margin: 10, padding: 5, marginBottom: 5 }}>
-        나의 프로필과 사진이 배치됨
-      </Paper>
-      <Box marginLeft={10} marginRight={10}>
-        <BasicTabs />
+      <Box className="container">
+        <Box marginTop={1}>
+          <ComplexGrid />
+        </Box>
+        <Box>
+          <BasicTabs />
+        </Box>
+        <Box>
+          <Grid container spacing={3}>
+            <Grid item sm={3} xs={12}>
+              <Grid container direction={"column"} spacing={3}>
+                <Grid item>
+                  <Works />
+                </Grid>
+                <Grid item>
+                  <Protfolio />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <Grid container direction={"column"} spacing={3}>
+                <Grid item>
+                  <About />
+                </Grid>
+                <Grid item>
+                  <Skills />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <ContactMe success={success} setSuccess={setSuccess}/>
+            </Grid>
+          </Grid>
+        </Box>
       </Box>
-      <Box marginLeft={10} marginRight={10}>
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <Card>
-              <CardContent>
-                <Typography>Works</Typography>
-                <Typography>
-                  Fullstack Developer
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={6}>
-            <Card>
-              <CardContent>
-                <Typography>About</Typography>
-                <Typography>저는....</Typography>
-              </CardContent>
-              <CardContent>
-            <Divider />
-
-              </CardContent>
-            
-            
-              <CardContent>
-                <Typography>Skills</Typography>
-                <Typography>저는....</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={3}>
-            <Card>asd</Card>
-          </Grid>
-        </Grid>
-      </Box>
+      {/* <iframe name="frAttachFiles" style={{ display: "none" }}></iframe> */}
     </div>
   );
 }
